@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Henrique Representações – Bolsas Boni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FAF6F0;
+      --peach:    #F0EBE3;
+      --sage:     #9BBC9F;
+      --sage-dark:#7aa383;
+      --white:    #ffffff;
+      --text:     #3a3228;
+      --text-soft:#7a6e65;
+      --radius:   14px;
+      --shadow:   0 4px 24px rgba(155,130,100,0.10);
+      --transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+
+    /* NAV */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,253,248,.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(155,188,159,.25); }
+    nav { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; flex-direction: column; line-height: 1.1; text-decoration: none; }
+    .logo-main { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--text); letter-spacing: .01em; }
+    .logo-sub { font-family: 'Playfair Display', serif; font-size: .78rem; font-style: italic; color: var(--sage-dark); letter-spacing: .06em; }
+    .nav-links { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: .82rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-soft); transition: color .25s; position: relative; }
+    .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:2px; background: var(--sage-dark); border-radius:2px; transition: width .25s ease; }
+    .nav-links a:hover { color: var(--sage-dark); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { background: var(--sage) !important; color: white !important; padding: .5rem 1.2rem !important; border-radius: 50px !important; font-size: .78rem !important; letter-spacing: .06em !important; text-transform: uppercase !important; transition: background .25s, transform .2s !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--sage-dark) !important; transform: translateY(-1px) !important; }
+    .nav-cta-instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af) !important; }
+    .nav-cta-instagram:hover { opacity: .9 !important; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af) !important; }
+    .nav-btns { display: flex; gap: 10px; align-items: center; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; flex-direction: column; background: white; border-top: 1px solid var(--peach); padding: 1.5rem 2rem; gap: 1.2rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; font-size: .9rem; font-weight: 500; color: var(--text-soft); letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+    .mobile-menu a:hover { color: var(--sage-dark); }
+    @media (max-width: 768px) { .nav-links { display: none !important; } .nav-cta { display: none !important; } .nav-btns { display: none !important; } .hamburger { display: flex !important; } }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 5% 60px; background: linear-gradient(135deg, #ffffff 0%, #FEEDCF 60%, #dde8de 100%); position: relative; overflow: hidden; }
+    .hero::before { content:''; position:absolute; top:-80px; right:-80px; width: 480px; height: 480px; background: radial-gradient(circle, rgba(155,188,159,0.18), transparent 70%); border-radius: 50%; }
+    .hero::after { content:''; position:absolute; bottom:-60px; left:-60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,230,189,0.5), transparent 70%); border-radius: 50%; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 60px; width:100%; position:relative; z-index:1; }
+    .hero-text { flex: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(155,188,159,0.18); border: 1px solid rgba(155,188,159,0.4); border-radius: 30px; padding: 5px 14px; font-size: .78rem; color: var(--sage-dark); font-weight: 600; letter-spacing: .4px; margin-bottom: 20px; text-transform: uppercase; animation: fadeSlideDown .7s ease both; animation-delay: .1s; }
+    .hero-badge i { font-size: .8rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; line-height: 1.15; color: var(--text); margin-bottom: 20px; animation: fadeSlideUp .8s ease both; animation-delay: .25s; }
+    .hero-title em { font-style: normal; color: var(--sage-dark); }
+    .hero-sub { font-size: 1.05rem; color: var(--text-soft); margin-bottom: 36px; max-width: 460px; line-height: 1.75; animation: fadeSlideUp .8s ease both; animation-delay: .45s; }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeSlideUp .8s ease both; animation-delay: .6s; }
+    .btn-primary { background: var(--sage); color: white; border: none; border-radius: 30px; padding: 13px 28px; font-size: .95rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--sage-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(122,163,131,0.35); }
+    .btn-outline { background: transparent; color: var(--text); border: 2px solid rgba(155,188,159,0.5); border-radius: 30px; padding: 12px 26px; font-size: .95rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-outline:hover { border-color: var(--sage); color: var(--sage-dark); transform: translateY(-2px); }
+    .hero-visual { flex: 0 0 400px; display:flex; align-items:center; justify-content:center; animation: fadeSlideLeft .9s ease both; animation-delay: .3s; }
+    .hero-img-wrap { width: 480px; height: 480px; background: transparent; display: flex; align-items: center; justify-content: center; animation: float 5s ease-in-out infinite; filter: drop-shadow(0 24px 40px rgba(122,163,131,0.2)); }
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(-.5deg)} 50%{transform:translateY(-18px) rotate(.5deg)} }
+    .blob { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(40px); opacity: .35; }
+    .blob-1 { width:320px;height:320px; background:radial-gradient(circle,#9BBC9F,transparent); top:-60px;right:10%; animation: blobDrift 9s ease-in-out infinite; }
+    .blob-2 { width:200px;height:200px; background:radial-gradient(circle,#FEEDCF,transparent); bottom:40px;left:5%; animation: blobDrift 7s ease-in-out infinite reverse; }
+    .blob-3 { width:150px;height:150px; background:radial-gradient(circle,#F0A898,transparent); top:30%;left:40%; animation: blobDrift 11s ease-in-out infinite 2s; }
+    @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(18px,-12px) scale(1.05)} 66%{transform:translate(-10px,16px) scale(.95)} }
+    @keyframes fadeSlideDown { from { opacity:0; transform:translateY(-22px); } to { opacity:1; transform:none; } }
+    @keyframes fadeSlideUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+    @keyframes fadeSlideLeft { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:none; } }
+
+    /* STATS */
+    .stats { background: var(--white); padding: 40px 5%; border-bottom: 1px solid rgba(155,188,159,0.15); }
+    .stats-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; }
+    .stat { text-align: center; transition: transform .3s; }
+    .stat:hover { transform: translateY(-4px); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--sage-dark); display:inline-block; transition: transform .3s; }
+    .stat:hover .stat-num { transform: scale(1.12); color: var(--sage); }
+    .stat-label { font-size: .82rem; color: var(--text-soft); font-weight: 500; letter-spacing: .3px; }
+
+    /* SECTION SHARED */
+    section { padding: 80px 5%; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-tag { display: inline-block; background: rgba(155,188,159,0.15); color: var(--sage-dark); font-size: .75rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; animation: tagFadeIn .6s ease both; animation-delay: .05s; }
+    @keyframes tagFadeIn { from{opacity:0;letter-spacing:4px} to{opacity:1;letter-spacing:1.2px} }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--text); margin-bottom: 12px; }
+    .section-sub { color: var(--text-soft); font-size: .97rem; max-width: 520px; margin: 0 auto; }
+
+    /* ABOUT */
+    #sobre { background: var(--white); }
+    .about-inner { max-width: 1000px; margin: 0 auto; display: flex; gap: 60px; align-items: center; }
+    .about-img { flex: 0 0 300px; height: 320px; background: linear-gradient(135deg, var(--peach), var(--sage)); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); transition: transform .4s ease, box-shadow .4s ease; }
+    .about-img:hover { transform: scale(1.03) rotate(1deg); box-shadow: 0 20px 48px rgba(122,163,131,0.25); }
+    .about-img i { font-size: 5rem; color: white; opacity: .8; transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+    .about-img:hover i { transform: scale(1.2) rotate(-8deg); }
+    .about-content h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; margin-bottom: 16px; }
+    .about-content p { color: var(--text-soft); margin-bottom: 14px; font-size: .96rem; }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .pill { background: var(--cream); border: 1px solid rgba(155,188,159,0.35); border-radius: 20px; padding: 5px 14px; font-size: .82rem; color: var(--text-soft); font-weight: 500; transition: all .25s ease; }
+    .pill:hover { background: rgba(155,188,159,0.2); border-color: var(--sage); color: var(--sage-dark); transform: scale(1.04); }
+
+    /* PRODUCTS HOMEPAGE */
+    #produtos { background: var(--cream); }
+    .products-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
+    .product-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); cursor: pointer; position: relative; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(155,130,100,0.16); }
+    .product-card::after { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); transition: left .55s ease; pointer-events:none; }
+    .product-card:hover::after { left:150%; }
+    .product-img { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; position: relative; overflow: hidden; }
+    .product-badge { position: absolute; top: 12px; left: 12px; background: var(--sage); color: white; font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .3px; }
+    .product-body { padding: 20px; }
+    .product-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+    .product-desc { font-size: .85rem; color: var(--text-soft); margin-bottom: 16px; line-height: 1.6; }
+    .product-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .tag { background: var(--cream); color: var(--text-soft); font-size: .72rem; padding: 3px 9px; border-radius: 10px; }
+    .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; background: #25d366; color: white; border: none; border-radius: 30px; padding: 11px; font-size: .88rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: scale(1.02); }
+
+    /* HOW IT WORKS */
+    #como-funciona { background: var(--white); }
+    .steps { max-width: 900px; margin: 0 auto; display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+    .step { flex: 1; min-width: 200px; text-align: center; transition: transform .3s ease; }
+    .step:hover { transform: translateY(-6px); }
+    .step-icon { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--peach), var(--sage)); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.7rem; color: white; box-shadow: 0 8px 20px rgba(155,130,100,0.18); transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s; }
+    .step:hover .step-icon { transform: scale(1.15) rotate(-6deg); box-shadow: 0 14px 30px rgba(122,163,131,0.35); }
+    .step h3 { font-weight: 600; margin-bottom: 8px; }
+    .step p { color: var(--text-soft); font-size: .88rem; }
+
+    /* CONTACT */
+    #contato { background: linear-gradient(135deg, var(--peach) 0%, var(--cream) 100%); text-align: center; }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-desc { color: var(--text-soft); margin-bottom: 36px; font-size: .97rem; }
+    .contact-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-whatsapp-lg { display: inline-flex; align-items: center; gap: 10px; background: #25d366; color: white; border: none; border-radius: 30px; padding: 14px 30px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; animation: waPulse 2.8s ease-in-out infinite; }
+    .btn-whatsapp-lg:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.3); animation: none; }
+    @keyframes waPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } 50% { box-shadow: 0 0 0 10px rgba(37,211,102,0.18); } }
+    .btn-instagram { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border: none; border-radius: 30px; padding: 14px 30px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; }
+    .btn-instagram:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(220,39,67,0.3); }
+
+    /* FOOTER */
+    footer { background: var(--text); color: rgba(255,255,255,0.7); padding: 40px 5%; text-align: center; }
+    footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: white; margin-bottom: 10px; }
+    footer p { font-size: .82rem; }
+    footer a { color: var(--sage); text-decoration: none; transition: color .2s, letter-spacing .2s; }
+    footer a:hover { color: #c8e0cb; letter-spacing: .5px; }
+
+    /* MOBILE MAIN */
+    @media (max-width: 900px) { .hero-visual { display: none; } .about-inner { flex-direction: column; } .about-img { flex: none; width: 100%; } }
+    @media (max-width: 480px) { section { padding: 60px 4%; } .products-grid { grid-template-columns: 1fr; } }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity:0; transform:translateX(-30px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-left.visible { opacity:1; transform:none; }
+    .reveal-right { opacity:0; transform:translateX(30px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right.visible { opacity:1; transform:none; }
+    .reveal-scale { opacity:0; transform:scale(.9); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-scale.visible { opacity:1; transform:none; }
+
+    /* ═══ CATALOG PAGE ═══ */
+    #catalogPage { display: none; font-family: 'Inter', sans-serif; background: #ffffff; color: #3a3228; min-height: 100vh; }
+    .cat-topbar { background: rgba(250,246,240,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(155,188,159,0.2); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 200; }
+    .cat-topbar-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .cat-search { display: flex; align-items: center; gap: 0; background: #fff; border: 1px solid rgba(155,188,159,0.35); border-radius: 30px; padding: 6px 14px; width: min(320px, 35vw); }
+    .cat-search input { border: none; outline: none; background: transparent; font-size: .88rem; color: #3a3228; width: 100%; font-family: 'Inter', sans-serif; }
+    .cat-search i { color: #7a6e65; font-size: .85rem; margin-right: 8px; }
+    .cat-back { display: flex; align-items: center; gap: 7px; text-decoration: none; color: #7a6e65; font-size: .88rem; font-weight: 500; cursor: pointer; background: none; border: none; font-family: 'Inter', sans-serif; transition: color .2s; }
+    .cat-back:hover { color: #7aa383; }
+    .cat-layout { display: flex; min-height: calc(100vh - 60px); }
+    .cat-sidebar { width: 260px; flex-shrink: 0; background: #fff; border-right: 1px solid rgba(155,188,159,0.15); padding: 24px 18px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
+    .cat-sidebar::-webkit-scrollbar { width: 4px; }
+    .cat-sidebar::-webkit-scrollbar-thumb { background: rgba(155,188,159,0.4); border-radius: 4px; }
+    .cat-filter-section { margin-bottom: 26px; }
+    .cat-filter-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a6e65; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .cat-filter-title i { font-size: .7rem; transition: transform .2s; }
+    .cat-filter-title.collapsed i { transform: rotate(-90deg); }
+    .cat-filter-body { display: flex; flex-direction: column; gap: 7px; }
+    .cat-filter-body.hidden { display: none; }
+    .cat-fcheck { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: .86rem; color: #3a3228; user-select: none; }
+    .cat-fcheck input { accent-color: #9BBC9F; width: 15px; height: 15px; cursor: pointer; }
+    .cat-fcheck .fcount { font-size: .72rem; color: #7a6e65; background: #FAF6F0; padding: 1px 7px; border-radius: 10px; margin-left: auto; }
+    .color-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .cdot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all .2s; position: relative; }
+    .cdot:hover, .cdot.active { border-color: #7aa383; transform: scale(1.15); }
+    .cdot.active::after { content:'✓'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:.6rem; color:rgba(0,0,0,0.45); }
+    .cat-clear-btn { width: 100%; background: transparent; border: 1px solid rgba(155,188,159,0.4); border-radius: 20px; padding: 7px; font-size: .82rem; color: #7a6e65; cursor: pointer; transition: all .2s; margin-top: 6px; font-family: 'Inter', sans-serif; }
+    .cat-clear-btn:hover { background: #FAF6F0; color: #7aa383; }
+    .cat-main { flex: 1; padding: 24px 24px 60px; min-width: 0; }
+    .cat-main-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .cat-main-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #3a3228; }
+    .cat-meta { font-size: .85rem; color: #7a6e65; }
+    .cat-controls { display: flex; align-items: center; gap: 10px; }
+    .cat-sort { border: 1px solid rgba(155,188,159,0.35); background: #fff; border-radius: 20px; padding: 7px 14px; font-size: .85rem; font-family: 'Inter', sans-serif; color: #3a3228; cursor: pointer; outline: none; }
+    .cat-view-toggle { display: flex; gap: 4px; }
+    .cat-view-btn { width: 32px; height: 32px; border: 1px solid rgba(155,188,159,0.35); background: #fff; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .85rem; color: #7a6e65; transition: all .2s; }
+    .cat-view-btn.active { background: #9BBC9F; color: white; border-color: #9BBC9F; }
+    .cat-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .cat-tab { padding: 7px 16px; border-radius: 20px; font-size: .83rem; font-weight: 500; cursor: pointer; border: 1px solid rgba(155,188,159,0.35); background: #fff; color: #7a6e65; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .cat-tab.active { background: #9BBC9F; color: white; border-color: #9BBC9F; }
+    .cat-tab:hover:not(.active) { border-color: #9BBC9F; color: #7aa383; }
+    .cat-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+    .cat-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(155,188,159,0.15); border: 1px solid rgba(155,188,159,0.4); border-radius: 20px; padding: 4px 10px; font-size: .78rem; color: #7aa383; font-weight: 500; }
+    .cat-chip button { background: none; border: none; cursor: pointer; color: #7aa383; font-size: .75rem; line-height: 1; padding: 0; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+    .cat-grid.list-view { grid-template-columns: 1fr; }
+    .cat-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 24px rgba(155,130,100,0.10); overflow: hidden; transition: transform .3s, box-shadow .3s; cursor: pointer; }
+    .cat-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(155,130,100,0.15); }
+    .cat-grid.list-view .cat-card { display: flex; }
+    .cat-card-img { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 3.2rem; position: relative; overflow:hidden; background:#ffffff; }
+    .cat-grid.list-view .cat-card-img { width: 120px; flex-shrink: 0; aspect-ratio: 1; }
+    .cat-card-badge { position: absolute; top: 9px; left: 9px; background: #9BBC9F; color: white; font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+    .cat-card-body { padding: 15px; flex: 1; display: flex; flex-direction: column; }
+    .cat-card-name { font-family: 'Playfair Display', serif; font-size: .95rem; font-weight: 600; margin-bottom: 5px; color: #3a3228; }
+    .cat-card-desc { font-size: .79rem; color: #7a6e65; margin-bottom: 10px; line-height: 1.55; flex: 1; }
+    .cat-card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 11px; }
+    .cat-tag { background: #FAF6F0; color: #7a6e65; font-size: .67rem; padding: 2px 8px; border-radius: 8px; }
+    /* Color dots on card */
+    .cat-card-colors { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+    .cat-color-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all .2s; flex-shrink: 0; }
+    .cat-color-dot:hover, .cat-color-dot.active { border-color: #7aa383; transform: scale(1.2); }
+    .cat-color-dot[title]:hover::after { content: attr(title); position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: rgba(58,50,40,.85); color: #fff; font-size: .65rem; padding: 2px 6px; border-radius: 6px; white-space: nowrap; pointer-events: none; }
+    .cat-color-dot { position: relative; }
+    .cat-wa-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #25d366; color: white; border: none; border-radius: 24px; padding: 9px; font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .2s; text-decoration: none; font-family: 'Inter', sans-serif; }
+    .cat-wa-btn:hover { background: #1ebe5d; }
+    .cat-pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 36px; flex-wrap: wrap; }
+    .cat-pg-btn { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(155,188,159,0.35); background: #fff; font-size: .88rem; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; color: #3a3228; font-family: 'Inter', sans-serif; }
+    .cat-pg-btn:hover:not(:disabled) { border-color: #9BBC9F; color: #7aa383; }
+    .cat-pg-btn.active { background: #9BBC9F; color: white; border-color: #9BBC9F; font-weight: 700; }
+    .cat-pg-btn:disabled { opacity: .35; cursor: default; }
+    .cat-ellipsis { width: 38px; text-align: center; color: #7a6e65; }
+    .cat-empty { text-align: center; padding: 80px 20px; color: #7a6e65; grid-column: 1/-1; }
+    .cat-empty i { font-size: 3rem; margin-bottom: 16px; display: block; opacity: .4; }
+    .cat-sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 150; }
+    .cat-filter-mob-btn { display: none; align-items: center; gap: 7px; background: #9BBC9F; color: white; border: none; border-radius: 24px; padding: 9px 18px; font-size: .85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+    @media (max-width: 860px) { .cat-sidebar { position: fixed; top: 60px; left: -100%; width: 270px; height: calc(100vh - 60px); z-index: 160; transition: left .3s; } .cat-sidebar.open { left: 0; } .cat-sidebar-overlay.open { display: block; } .cat-filter-mob-btn { display: flex; } .cat-search { width: min(180px, 38vw); } }
+    @media (max-width: 520px) { .cat-main { padding: 14px 12px 40px; } .cat-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; } }
+
+    /* ═══ ZOOM LENS ═══ */
+    #zoomLens {
+      display: none;
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 3px solid rgba(155,188,159,0.75);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.6);
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+      background: #fff;
+      transform: translate(-50%, -50%);
+    }
+    #zoomLens img {
+      position: absolute;
+      transform-origin: 0 0;
+      pointer-events: none;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    @media (hover: none) { #zoomLens { display: none !important; } }
+
+    /* ═══ PRODUCT DETAIL PAGE ═══ */
+    #productPage { display: none; font-family: 'Inter', sans-serif; background: #ffffff; color: #3a3228; min-height: 100vh; }
+    .pd-topbar { background: rgba(250,246,240,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(155,188,159,0.2); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 200; }
+    .pd-back-btn { display: flex; align-items: center; gap: 7px; color: #7a6e65; font-size: .9rem; font-weight: 500; cursor: pointer; background: none; border: none; font-family: 'Inter', sans-serif; transition: color .2s; }
+    .pd-back-btn:hover { color: #7aa383; }
+    .pd-topbar-logo { cursor: pointer; }
+
+    .pd-body { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* Breadcrumb */
+    .pd-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: #7a6e65; margin-bottom: 32px; flex-wrap: wrap; }
+    .pd-breadcrumb span { color: #9BBC9F; }
+    .pd-breadcrumb a { color: #7a6e65; text-decoration: none; cursor: pointer; transition: color .2s; }
+    .pd-breadcrumb a:hover { color: #7aa383; }
+
+    /* Main product layout */
+    .pd-main { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-bottom: 64px; }
+    @media (max-width: 768px) { .pd-main { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* Image */
+    .pd-img-wrap { position: relative; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 8px 40px rgba(155,130,100,0.12); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+    .pd-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 24px; transition: transform .4s ease; }
+    .pd-img-wrap:hover img { transform: scale(1.03); }
+    .pd-badge { position: absolute; top: 16px; left: 16px; background: #9BBC9F; color: white; font-size: .75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+
+    /* Info */
+    .pd-info { display: flex; flex-direction: column; gap: 20px; }
+    .pd-colecao { font-size: .72rem; color: #9BBC9F; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .pd-name { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; color: #3a3228; line-height: 1.2; }
+    .pd-desc { font-size: .97rem; color: #7a6e65; line-height: 1.75; }
+
+    /* Color variants */
+    .pd-colors-label { font-size: .8rem; font-weight: 600; color: #3a3228; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .5px; }
+    .pd-colors-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .pd-color-swatch { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all .2s; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .pd-color-swatch:hover { transform: scale(1.15); }
+    .pd-color-swatch.active { border-color: #7aa383; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #7aa383; }
+    .pd-color-name { font-size: .82rem; color: #7a6e65; margin-left: 6px; font-style: italic; }
+
+    /* Tags */
+    .pd-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+    .pd-tag { background: #FAF6F0; border: 1px solid rgba(155,188,159,0.35); color: #7a6e65; font-size: .78rem; padding: 4px 12px; border-radius: 12px; }
+
+    /* WA Button */
+    .pd-wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: white; border: none; border-radius: 30px; padding: 16px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all .25s; text-decoration: none; font-family: 'Inter', sans-serif; box-shadow: 0 4px 20px rgba(37,211,102,0.25); }
+    .pd-wa-btn:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.35); }
+    .pd-wa-btn i { font-size: 1.25rem; }
+
+    /* Divider */
+    .pd-divider { height: 1px; background: rgba(155,188,159,0.2); margin: 4px 0; }
+
+    /* Info grid */
+    .pd-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pd-meta-item { background: #fff; border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(155,188,159,0.18); }
+    .pd-meta-item-label { font-size: .7rem; color: #9BBC9F; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+    .pd-meta-item-val { font-size: .88rem; color: #3a3228; font-weight: 500; }
+
+    /* Related products section */
+    .pd-related { margin-top: 20px; }
+    .pd-related-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #3a3228; margin-bottom: 6px; }
+    .pd-related-sub { font-size: .88rem; color: #7a6e65; margin-bottom: 24px; }
+    .pd-related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+    @media (max-width: 520px) { .pd-related-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+    .pd-rel-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 18px rgba(155,130,100,0.09); overflow: hidden; cursor: pointer; transition: transform .25s, box-shadow .25s; }
+    .pd-rel-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(155,130,100,0.14); }
+    .pd-rel-card-img { aspect-ratio: 4/3; background: #ffffff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .pd-rel-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .pd-rel-card-body { padding: 12px; }
+    .pd-rel-card-colecao { font-size: .62rem; color: #9BBC9F; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; margin-bottom: 3px; }
+    .pd-rel-card-name { font-family: 'Playfair Display', serif; font-size: .85rem; font-weight: 600; color: #3a3228; line-height: 1.3; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ MAIN PAGE ══════════ -->
+<div id="mainPage">
+<header>
+  <nav>
+    <a class="logo" href="#inicio" onclick="showMain()">
+      <img src="https://i.imgur.com/UcEz0lV.png" alt="Henrique Representações – Bolsas Boni" style="height:50px;width:auto;object-fit:contain;display:block;"/>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showCatalog();return false;">Produtos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="https://www.instagram.com/boni_representacoesdebolsas/" target="_blank" class="nav-cta nav-cta-instagram">
+        <i class="fa-brands fa-instagram"></i> Instagram
+      </a>
+      <a href="https://wa.me/5527999212276" target="_blank" class="nav-cta">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="closeMobile();showCatalog();return false;">Produtos</a>
+    <a href="#sobre" onclick="closeMobile()">Sobre</a>
+    <a href="#contato" onclick="closeMobile()">Contato</a>
+    <a href="https://wa.me/5527999212276" target="_blank" style="color:var(--sage-dark)">Falar no WhatsApp</a>
+    <a href="https://www.instagram.com/boni_representacoesdebolsas/" target="_blank" style="color:#dd2a7b">Instagram</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-badge"><i class="fa-solid fa-star"></i> Representação Exclusiva · B2B</div>
+      <h1 class="hero-title">Bolsas Maternidade<br><em>com estilo e cuidado</em><br>para sua loja</h1>
+      <p class="hero-sub">Ofereça às suas clientes produtos de qualidade superior. Trabalho com as melhores bolsas Boni, com atendimento personalizado, agilidade e condições especiais para lojistas.</p>
+      <div class="hero-buttons">
+        <a href="#" onclick="showCatalog();return false;" class="btn-primary"><i class="fa-solid fa-bag-shopping"></i> Ver Catálogo</a>
+        <a href="#contato" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Falar com Henrique</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-img-wrap"><img src="https://i.imgur.com/ZQVT7IA.png" alt="Bolsa Maternidade Boni" style="width:100%;height:100%;object-fit:contain;"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat reveal"><div class="stat-num" data-target="90" data-suffix="+">+90</div><div class="stat-label">Produtos</div></div>
+    <div class="stat reveal"><div class="stat-num" data-target="8" data-suffix="+">+8</div><div class="stat-label">Coleções</div></div>
+    <div class="stat reveal"><div class="stat-num" data-target="20" data-suffix="+">20+</div><div class="stat-label">Anos de Experiência</div></div>
+    <div class="stat reveal"><div class="stat-num" data-target="100" data-suffix="%">100%</div><div class="stat-label">Atendimento Dedicado</div></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="about-inner">
+    <div class="about-img reveal-left" style="background:none;box-shadow:var(--shadow);overflow:hidden;padding:0;"><img src="https://i.imgur.com/TM1d0LT.png" alt="Henrique Paulo Reis" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+    <div class="about-content reveal-right">
+      <h2>Quem sou eu</h2>
+      <p>Meu nome é <strong>Henrique Paulo Reis</strong>, sou representante comercial e atuo no mercado há quase 20 anos com a <strong>Boni Bolsas</strong>, empresa que acompanho desde o início.</p>
+      <p>Com persistência e comprometimento, conquistei a confiança de lojistas em todo o Brasil. Cada cliente atendido é tratado com atenção personalizada, porque acredito que um bom relacionamento vale mais do que qualquer negociação.</p>
+      <p>Atendo clientes em todo o Brasil, sempre com foco em qualidade, confiança e bom relacionamento.</p>
+      <div class="about-pills">
+        <span class="pill">🎒 Alta Qualidade</span>
+        <span class="pill">🤝 Atendimento B2B</span>
+        <span class="pill">🎨 Variedade de Modelos</span>
+        <span class="pill">🏷️ Preços Competitivos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-header reveal">
+    <span class="section-tag">Catálogo</span>
+    <h2 class="section-title">Nossos Produtos</h2>
+    <p class="section-sub">Uma seleção das bolsas maternidade Boni. Entre em contato para conhecer o catálogo completo e condições para lojistas.</p>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+  <div style="text-align:center;margin-top:40px">
+    <button class="btn-primary" onclick="showCatalog()" style="margin:0 auto;font-size:1rem;padding:14px 36px;">
+      <i class="fa-solid fa-book-open"></i> Ver Catálogo Completo
+    </button>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="section-header reveal">
+    <span class="section-tag">Simples & Rápido</span>
+    <h2 class="section-title">Como Funciona</h2>
+    <p class="section-sub">Processo descomplicado para lojistas que querem agilidade e segurança na hora de comprar.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal-scale">
+      <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h3>Escolha</h3>
+      <p>Navegue pelo catálogo e selecione os modelos que mais combinam com o perfil da sua loja.</p>
+    </div>
+    <div class="step reveal-scale" style="transition-delay:.15s">
+      <div class="step-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <h3>Entre em Contato</h3>
+      <p>Clique em "Fale comigo no WhatsApp" e fale diretamente com Henrique para tirar dúvidas e negociar.</p>
+    </div>
+    <div class="step reveal-scale" style="transition-delay:.3s">
+      <div class="step-icon"><i class="fa-solid fa-box"></i></div>
+      <h3>Receba & Venda</h3>
+      <p>Feche o pedido com condições especiais B2B e receba os produtos diretamente da <strong>Boni Bolsas</strong>, prontos para a sua prateleira.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contact-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Contato</span>
+      <h2 class="section-title">Fale Comigo</h2>
+    </div>
+    <p class="contact-desc reveal">Sou representante exclusivo das Bolsas Boni e estou pronto para atender a sua loja com o melhor portfólio e condições diferenciadas. Vamos conversar?</p>
+    <div class="contact-buttons reveal">
+      <a href="https://wa.me/5527999212276" target="_blank" class="btn-whatsapp-lg">
+        <i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> WhatsApp
+      </a>
+      <a href="https://www.instagram.com/boni_representacoesdebolsas/" target="_blank" class="btn-instagram">
+        <i class="fa-brands fa-instagram" style="font-size:1.3rem"></i> Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Henrique Representações · Bolsas Boni</div>
+  <p>Representação Comercial de Bolsas Maternidade · Vendas Exclusivas para Lojistas (B2B)</p>
+  <p style="margin-top:8px"><a href="https://www.instagram.com/boni_representacoesdebolsas/" target="_blank">@boni_representacoesdebolsas</a></p>
+</footer>
+</div>
+
+<!-- ══════════ CATALOG PAGE ══════════ -->
+<div id="catalogPage">
+  <div class="cat-sidebar-overlay" id="catOverlay" onclick="catCloseSidebar()"></div>
+  <div class="cat-topbar">
+    <div class="cat-topbar-logo" onclick="showMain()">
+      <img src="https://i.imgur.com/UcEz0lV.png" alt="Henrique Representações" style="height:42px;width:auto;object-fit:contain;"/>
+    </div>
+    <div class="cat-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="catSearchInput" placeholder="Buscar bolsa..." oninput="catApplyFilters()"/>
+    </div>
+    <button class="cat-back" onclick="showMain()"><i class="fa-solid fa-arrow-left"></i> Voltar ao site</button>
+  </div>
+  <div class="cat-layout">
+    <aside class="cat-sidebar" id="catSidebar">
+      <div class="cat-filter-section">
+        <div class="cat-filter-title" onclick="catToggleSection(this)">Coleção <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="cat-filter-body" id="catCatFilter">
+          <label class="cat-fcheck"><input type="checkbox" value="CHICAGO" onchange="catApplyFilters()"> <span>Chicago</span></label>
+          <label class="cat-fcheck"><input type="checkbox" value="FITA" onchange="catApplyFilters()"> <span>Fita</span></label>
+        </div>
+      </div>
+      <div class="cat-filter-section">
+        <div class="cat-filter-title" onclick="catToggleSection(this)">Características <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="cat-filter-body" id="catTagFilter">
+          <label class="cat-fcheck"><input type="checkbox" value="Tamanho G" onchange="catApplyFilters()"> <span>Tamanho Grande</span></label>
+          <label class="cat-fcheck"><input type="checkbox" value="Tamanho M" onchange="catApplyFilters()"> <span>Tamanho Médio</span></label>
+          <label class="cat-fcheck"><input type="checkbox" value="Mochila" onchange="catApplyFilters()"> <span>Mochila</span></label>
+          <label class="cat-fcheck"><input type="checkbox" value="Frasqueira" onchange="catApplyFilters()"> <span>Frasqueira</span></label>
+          <label class="cat-fcheck"><input type="checkbox" value="Sacola" onchange="catApplyFilters()"> <span>Sacola</span></label>
+        </div>
+      </div>
+      <div class="cat-filter-section">
+        <div class="cat-filter-title" onclick="catToggleSection(this)">Destaques <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="cat-filter-body" id="catBadgeFilter">
+          <label class="cat-fcheck"><input type="checkbox" value="Novidade" onchange="catApplyFilters()"> <span>Novidades</span></label>
+        </div>
+      </div>
+      <div class="cat-filter-section">
+        <div class="cat-filter-title" onclick="catToggleSection(this)">Cor <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="cat-filter-body"><div class="color-grid" id="catColorFilter"></div></div>
+      </div>
+      <button class="cat-clear-btn" onclick="catClearFilters()"><i class="fa-solid fa-rotate-left"></i> Limpar Filtros</button>
+    </aside>
+    <main class="cat-main">
+      <div class="cat-main-header">
+        <div>
+          <h1 class="cat-main-title">Catálogo Completo</h1>
+          <p class="cat-meta" id="catMeta"></p>
+        </div>
+        <div class="cat-controls">
+          <button class="cat-filter-mob-btn" onclick="catOpenSidebar()"><i class="fa-solid fa-sliders"></i> Filtros</button>
+          <select class="cat-sort" id="catSort" onchange="catApplyFilters()">
+            <option value="default">Padrão</option>
+            <option value="az">Nome A–Z</option>
+            <option value="za">Nome Z–A</option>
+            <option value="badge">Destaques primeiro</option>
+          </select>
+          <div class="cat-view-toggle">
+            <button class="cat-view-btn active" id="catGridBtn" onclick="catSetView('grid')" title="Grade"><i class="fa-solid fa-grip"></i></button>
+            <button class="cat-view-btn" id="catListBtn" onclick="catSetView('list')" title="Lista"><i class="fa-solid fa-list"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="Todos" onclick="catSetTab(this)">Todos</button>
+        <button class="cat-tab" data-cat="Bolsa" onclick="catSetTab(this)">Bolsas</button>
+        <button class="cat-tab" data-cat="Mochila" onclick="catSetTab(this)">Mochilas</button>
+        <button class="cat-tab" data-cat="Frasqueira" onclick="catSetTab(this)">Frasqueiras</button>
+      </div>
+      <div class="cat-chips" id="catChips"></div>
+      <div class="cat-grid" id="catGrid"></div>
+      <div class="cat-pagination" id="catPagination"></div>
+    </main>
+  </div>
+</div>
+
+<!-- ══════════ PRODUCT DETAIL PAGE ══════════ -->
+<div id="productPage">
+  <div class="pd-topbar">
+    <button class="pd-back-btn" id="pdBackBtn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Catálogo</button>
+    <div class="pd-topbar-logo" onclick="showMain()">
+      <img src="https://i.imgur.com/UcEz0lV.png" alt="Henrique Representações" style="height:42px;width:auto;object-fit:contain;"/>
+    </div>
+  </div>
+  <div class="pd-body">
+    <div class="pd-breadcrumb" id="pdBreadcrumb"></div>
+    <div class="pd-main">
+      <div class="pd-img-col">
+        <div class="pd-img-wrap" id="pdImgWrap">
+          <img id="pdImg" src="" alt=""/>
+          <span id="pdBadge" class="pd-badge" style="display:none"></span>
+        </div>
+      </div>
+      <div class="pd-info" id="pdInfo"></div>
+    </div>
+    <div class="pd-related" id="pdRelated"></div>
+  </div>
+</div>
+
+<script>
+// ══ DATA ══
+const CAT_WA = "5527999212276";
+const CAT_PAGE_SIZE = 24;
+let catPage = 1;
+let catFiltered = [];
+let catActiveTab = "Todos";
+let pdFromCatalog = false;
+
+const allProducts = [
+  { name: "BOLSA SACOLA CHICAGO – Verde Claro", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#C8DFC9", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-273-01-11-08-2888-id258.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=258" },
+  { name: "BOLSA SACOLA CHICAGO – Vinho", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#8B3A52", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-529-01-14-56-6614-id259.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=259" },
+  { name: "BOLSA SACOLA CHICAGO – Bege", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#E8C9A0", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-401-01-07-09-8407-id255.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=255" },
+  { name: "BOLSA SACOLA CHICAGO – Azul Bebê", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#A8C8E8", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-117-01-01-18-5360-id254.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=254" },
+  { name: "BOLSA SACOLA CHICAGO – Rosa Bebê", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#F8D7DA", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-246-01-10-08-8396-id257.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=257" },
+  { name: "BOLSA SACOLA CHICAGO – Azul Marinho", colecao: "CHICAGO", desc: "Bolsa sacola da coleção Chicago. Espaço amplo e design moderno, perfeita para maternidade.", emoji: "👜", color: "#1B3A6B", tags: ["CHICAGO", "Sacola", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-342-01-09-05-4131-id256.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=256" },
+  { name: "MOCHILA CHICAGO – Verde Claro", colecao: "CHICAGO", desc: "Mochila da coleção Chicago com compartimentos organizados e alças acolchoadas. Design prático e elegante.", emoji: "🎒", color: "#C8DFC9", tags: ["CHICAGO", "Mochila", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-484-02-09-29-3385-id264.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=264" },
+  { name: "MOCHILA CHICAGO – Vinho", colecao: "CHICAGO", desc: "Mochila da coleção Chicago com compartimentos organizados e alças acolchoadas. Design prático e elegante.", emoji: "🎒", color: "#8B3A52", tags: ["CHICAGO", "Mochila", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-419-02-10-48-7731-id265.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=265" },
+  { name: "MOCHILA CHICAGO – Bege", colecao: "CHICAGO", desc: "Mochila da coleção Chicago com compartimentos organizados e alças acolchoadas. Design prático e elegante.", emoji: "🎒", color: "#E8C9A0", tags: ["CHICAGO", "Mochila", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-940-01-50-01-7738-id261.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=261" },
+  { name: "MOCHILA CHICAGO – Azul Bebê", colecao: "CHICAGO", desc: "Mochila da coleção Chicago com compartimentos organizados e alças acolchoadas. Design prático e elegante.", emoji: "🎒", color: "#A8C8E8", tags: ["CHICAGO", "Mochila", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-629-01-38-00-7861-id260.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=260" },
+  { name: "MOCHILA CHICAGO – Rosa Bebê", colecao: "CHICAGO", desc: "Mochila da coleção Chicago com compartimentos organizados e alças acolchoadas. Design prático e elegante.", emoji: "🎒", color: "#F8D7DA", tags: ["CHICAGO", "Mochila", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-735-02-08-17-3308-id263.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=263" },
+  { name: "BOLSA CHICAGO – Bege", colecao: "CHICAGO", desc: "Bolsa da coleção Chicago com design exclusivo e materiais de alta qualidade.", emoji: "👜", color: "#E8C9A0", tags: ["CHICAGO", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-133-04-25-48-2679-id267.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=267" },
+  { name: "BOLSA CHICAGO – Azul Bebê", colecao: "CHICAGO", desc: "Bolsa da coleção Chicago com design exclusivo e materiais de alta qualidade.", emoji: "👜", color: "#A8C8E8", tags: ["CHICAGO", "Novidade"], badge: "Novidade", img: "https://www.bolsasboni.com.br/upload/produtos/image-822-04-23-33-2167-id266.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=266" },
+  { name: "BOLSA MEDIA FITA – Vinho", colecao: "FITA", desc: "Bolsa média da coleção Fita em Vinho. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#8B3A52", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-606-04-37-34-5633-id154.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=154" },
+  { name: "BOLSA GRANDE FITA – Vinho", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Vinho. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#8B3A52", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-538-04-52-14-2609-id159.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=159" },
+  { name: "FRASQUEIRA RED. FITA – Vinho", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Vinho. Ideal para organizar itens de higiene.", emoji: "👛", color: "#8B3A52", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-941-05-36-16-1532-id169.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=169" },
+  { name: "MOCHILA FITA – Vinho", colecao: "FITA", desc: "Mochila da coleção Fita em Vinho com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#8B3A52", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-496-05-13-32-8379-id164.jpeg", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=164" },
+  { name: "BOLSA MEDIA FITA – Grafite", colecao: "FITA", desc: "Bolsa média da coleção Fita em Grafite. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#6B6B6B", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-502-11-53-18-4404-id153.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=153" },
+  { name: "BOLSA GRANDE FITA – Grafite", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Grafite. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#6B6B6B", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-996-04-49-50-7295-id158.jpeg", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=158" },
+  { name: "FRASQUEIRA RED. FITA – Grafite", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Grafite. Ideal para organizar itens de higiene.", emoji: "👛", color: "#6B6B6B", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-519-05-32-45-7269-id168.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=168" },
+  { name: "MOCHILA FITA – Grafite", colecao: "FITA", desc: "Mochila da coleção Fita em Grafite com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#6B6B6B", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-378-05-10-39-2952-id163.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=163" },
+  { name: "BOLSA MEDIA FITA – Bege", colecao: "FITA", desc: "Bolsa média da coleção Fita em Bege. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#E8C9A0", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-595-11-52-03-4303-id152.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=152" },
+  { name: "BOLSA GRANDE FITA – Bege", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Bege. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#E8C9A0", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-967-04-48-04-6252-id157.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=157" },
+  { name: "MOCHILA FITA – Bege", colecao: "FITA", desc: "Mochila da coleção Fita em Bege com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#E8C9A0", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-202-05-08-43-8442-id162.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=162" },
+  { name: "FRASQUEIRA RED. FITA – Bege", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Bege. Ideal para organizar itens de higiene.", emoji: "👛", color: "#E8C9A0", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-688-05-29-29-1742-id167.jpeg", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=167" },
+  { name: "FRASQUEIRA RED. FITA – Azul Bebê", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Azul Bebê. Ideal para organizar itens de higiene.", emoji: "👛", color: "#A8C8E8", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-498-12-50-56-1895-id236.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=236" },
+  { name: "MOCHILA FITA – Azul Bebê", colecao: "FITA", desc: "Mochila da coleção Fita em Azul Bebê com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#A8C8E8", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-800-12-47-39-3641-id235.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=235" },
+  { name: "BOLSA GRANDE FITA – Azul Bebê", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Azul Bebê. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#A8C8E8", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-366-12-43-08-9677-id234.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=234" },
+  { name: "BOLSA MEDIA FITA – Azul Bebê", colecao: "FITA", desc: "Bolsa média da coleção Fita em Azul Bebê. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#A8C8E8", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-561-12-23-19-9638-id233.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=233" },
+  { name: "FRASQUEIRA RED. FITA – Rosa", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Rosa. Ideal para organizar itens de higiene.", emoji: "👛", color: "#F8D7DA", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-266-05-23-37-4184-id165.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=165" },
+  { name: "MOCHILA FITA – Rosa", colecao: "FITA", desc: "Mochila da coleção Fita em Rosa com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#F8D7DA", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-285-05-01-58-4112-id160.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=160" },
+  { name: "BOLSA GRANDE FITA – Rosa", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Rosa. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#F8D7DA", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-384-04-57-24-9161-id155.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=155" },
+  { name: "BOLSA MEDIA FITA – Rosa", colecao: "FITA", desc: "Bolsa média da coleção Fita em Rosa. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#F8D7DA", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-669-11-48-11-2478-id150.jpeg", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=150" },
+  { name: "FRASQUEIRA RED. FITA – Marinho", colecao: "FITA", desc: "Frasqueira redonda da coleção Fita em Azul Marinho. Ideal para organizar itens de higiene.", emoji: "👛", color: "#1B3A6B", tags: ["FITA", "Frasqueira"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-153-05-26-52-2274-id166.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=166" },
+  { name: "MOCHILA FITA – Azul Marinho", colecao: "FITA", desc: "Mochila da coleção Fita em Azul Marinho com compartimentos organizados e alças acolchoadas.", emoji: "🎒", color: "#1B3A6B", tags: ["FITA", "Mochila"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-946-05-04-52-2818-id161.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=161" },
+  { name: "BOLSA GRANDE FITA – Azul Marinho", colecao: "FITA", desc: "Bolsa grande da coleção Fita em Azul Marinho. Interior espaçoso com múltiplos compartimentos.", emoji: "👜", color: "#1B3A6B", tags: ["FITA", "Tamanho G"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-172-04-44-12-7664-id156.jpeg", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=156" },
+  { name: "BOLSA MEDIA FITA – Azul Marinho", colecao: "FITA", desc: "Bolsa média da coleção Fita em Azul Marinho. Compartimentos funcionais e acabamento diferenciado.", emoji: "👜", color: "#1B3A6B", tags: ["FITA", "Tamanho M"], badge: null, img: "https://www.bolsasboni.com.br/upload/produtos/image-749-11-50-15-3549-id151.png", url: "https://www.bolsasboni.com.br/produto-ver.php?cod=151" },
+];
+
+// ══ HELPER: get color name from product name ══
+function getColorName(name) {
+  const m = name.match(/–\s*(.+)$/);
+  return m ? m[1].trim() : null;
+}
+
+// ══ HELPER: get base model name (without color) ══
+function getBaseName(name) {
+  return name.replace(/\s*–\s*.+$/, '').trim();
+}
+
+// ══ HELPER: find color variants of same model ══
+function getVariants(product) {
+  const base = getBaseName(product.name);
+  return allProducts.filter(p => getBaseName(p.name) === base && p !== product);
+}
+
+// ══ COLOR MAP (only colors actually in products) ══
+function buildColorMap() {
+  const colorMap = {
+    "Verde Claro": "#C8DFC9", "Vinho": "#8B3A52", "Bege": "#E8C9A0",
+    "Azul Bebê": "#A8C8E8", "Rosa Bebê": "#F8D7DA", "Azul Marinho": "#1B3A6B",
+    "Grafite": "#6B6B6B", "Salmão": "#F0A898", "Lilás": "#D8C8E8",
+    "Verde Escuro": "#4A7A5A", "Rosê": "#F2C4CE", "Pérola": "#F5F0EB",
+    "Rosa": "#F8D7DA", "Azul Bebe": "#A8C8E8",
+  };
+  // Build from actual product names
+  const used = new Set();
+  allProducts.forEach(p => {
+    const c = getColorName(p.name);
+    if (c) used.add(c);
+  });
+  const result = {};
+  used.forEach(name => {
+    if (colorMap[name]) result[name] = colorMap[name];
+    else {
+      // fallback: find the product's color
+      const p = allProducts.find(x => getColorName(x.name) === name);
+      if (p) result[name] = p.color;
+    }
+  });
+  return result;
+}
+
+// ══ NAV ══
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+// ══ SCROLL REVEAL ══
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
+
+// ══ STAT COUNTERS ══
+function animateCounter(el, target, suffix) {
+  const start = performance.now(), duration = 1400;
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const val = target % 1 !== 0 ? (e * target).toFixed(1) : Math.round(e * target);
+    el.textContent = val + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(e.target, parseFloat(e.target.dataset.target), e.target.dataset.suffix || '');
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(el => statsObserver.observe(el));
+
+// ══ HOMEPAGE PRODUCTS ══
+(function buildHomepageProducts() {
+  const featured = [
+    allProducts.find(p => p.name === 'BOLSA SACOLA CHICAGO – Verde Claro'),
+    allProducts.find(p => p.name === 'MOCHILA CHICAGO – Rosa Bebê'),
+    allProducts.find(p => p.name === 'BOLSA GRANDE FITA – Bege'),
+    allProducts.find(p => p.name === 'MOCHILA FITA – Rosa'),
+  ].filter(Boolean);
+
+  const grid = document.getElementById('productsGrid');
+  featured.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card reveal';
+    card.innerHTML = `
+      <div class="product-img" style="background:#ffffff;position:relative;overflow:hidden;">
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:12px;" loading="lazy" onerror="this.style.display='none'"/>` : `<span style="font-size:4rem">${p.emoji}</span>`}
+      </div>
+      <div class="product-body">
+        <div style="font-size:.68rem;color:#9BBC9F;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">${p.colecao}</div>
+        <h3 class="product-name">${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-meta">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>`;
+    card.onclick = () => openProduct(p, false);
+    grid.appendChild(card);
+    observer.observe(card);
+  });
+})();
+
+// ══ PAGE NAVIGATION ══
+function showMain() {
+  document.getElementById('mainPage').style.display = 'block';
+  document.getElementById('catalogPage').style.display = 'none';
+  document.getElementById('productPage').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+function showCatalog() {
+  document.getElementById('mainPage').style.display = 'none';
+  document.getElementById('catalogPage').style.display = 'block';
+  document.getElementById('productPage').style.display = 'none';
+  window.scrollTo(0, 0);
+  catBuildColors();
+  catApplyFilters();
+}
+function showProductPage() {
+  document.getElementById('mainPage').style.display = 'none';
+  document.getElementById('catalogPage').style.display = 'none';
+  document.getElementById('productPage').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// ══ OPEN PRODUCT DETAIL ══
+function openProduct(product, fromCatalog) {
+  pdFromCatalog = fromCatalog !== false;
+  renderProductPage(product);
+  showProductPage();
+}
+
+document.getElementById('pdBackBtn').onclick = () => {
+  if (pdFromCatalog) showCatalog();
+  else showMain();
+};
+
+function renderProductPage(product) {
+  // Breadcrumb
+  const bc = document.getElementById('pdBreadcrumb');
+  bc.innerHTML = `
+    <a onclick="${pdFromCatalog ? 'showCatalog()' : 'showMain()'}">← ${pdFromCatalog ? 'Catálogo' : 'Início'}</a>
+    <span>/</span>
+    <span>${product.colecao}</span>
+    <span>/</span>
+    <span style="color:#3a3228;font-weight:500">${product.name}</span>`;
+
+  // Image
+  const img = document.getElementById('pdImg');
+  img.src = product.img || '';
+  img.alt = product.name;
+  const badge = document.getElementById('pdBadge');
+  if (product.badge) { badge.textContent = product.badge; badge.style.display = 'block'; }
+  else { badge.style.display = 'none'; }
+  const imgWrap = document.getElementById('pdImgWrap');
+  imgWrap.style.background = product.color + '18';
+
+  // Variants (same base model, different colors)
+  const variants = getVariants(product);
+  const colorName = getColorName(product.name);
+
+  // Info panel
+  const info = document.getElementById('pdInfo');
+  const msg = encodeURIComponent('Olá Henrique! Tudo bem? Tenho interesse em saber mais sobre a *' + product.name + '* do catálogo Bolsas Boni. Poderia me passar informações, disponibilidade e condições para revenda? Obrigado(a)!');
+  const waLink = 'https://wa.me/' + CAT_WA + '?text=' + msg;
+
+  let variantsHTML = '';
+  if (variants.length > 0) {
+    const swatches = [product, ...variants].map(v => {
+      const cName = getColorName(v.name) || v.colecao;
+      const isActive = v === product;
+      return `<div class="pd-color-swatch ${isActive ? 'active' : ''}" style="background:${v.color};" title="${cName}" onclick="openProduct(allProducts[${allProducts.indexOf(v)}], ${pdFromCatalog})"></div>`;
+    }).join('');
+    variantsHTML = `
+      <div>
+        <div class="pd-colors-label">Cor disponível: <span class="pd-color-name" id="pdColorNameLabel">${colorName || ''}</span></div>
+        <div class="pd-colors-row">${swatches}</div>
+      </div>`;
+  } else if (colorName) {
+    variantsHTML = `<div><div class="pd-colors-label">Cor: <span class="pd-color-name">${colorName}</span></div></div>`;
+  }
+
+  // Determine tipo / tamanho from tags
+  const tipo = product.tags.find(t => ['Mochila','Frasqueira','Sacola','Kit Completo'].includes(t)) || 'Bolsa';
+  const tamanho = product.tags.find(t => ['Tamanho G','Tamanho M'].includes(t));
+
+  info.innerHTML = `
+    <div class="pd-colecao">Coleção ${product.colecao}</div>
+    <h1 class="pd-name">${product.name}</h1>
+    <div class="pd-divider"></div>
+    <p class="pd-desc">${product.desc}</p>
+    ${variantsHTML}
+    <div class="pd-tags">${product.tags.map(t => `<span class="pd-tag">${t}</span>`).join('')}</div>
+    <div class="pd-meta-grid">
+      <div class="pd-meta-item"><div class="pd-meta-item-label">Tipo</div><div class="pd-meta-item-val">${tipo}</div></div>
+      ${tamanho ? `<div class="pd-meta-item"><div class="pd-meta-item-label">Tamanho</div><div class="pd-meta-item-val">${tamanho.replace('Tamanho ','')}</div></div>` : ''}
+      <div class="pd-meta-item"><div class="pd-meta-item-label">Coleção</div><div class="pd-meta-item-val">${product.colecao}</div></div>
+      ${colorName ? `<div class="pd-meta-item"><div class="pd-meta-item-label">Cor</div><div class="pd-meta-item-val">${colorName}</div></div>` : ''}
+    </div>
+    <a href="${waLink}" target="_blank" class="pd-wa-btn">
+      <i class="fa-brands fa-whatsapp"></i> Falar com Henrique no WhatsApp
+    </a>`;
+
+  // Related: other items from different category
+  const related = buildRelated(product);
+  const relatedEl = document.getElementById('pdRelated');
+  if (related.length > 0) {
+    relatedEl.innerHTML = `
+      <div style="height:1px;background:rgba(155,188,159,0.2);margin-bottom:32px;"></div>
+      <div class="pd-related-title">Você também pode gostar</div>
+      <p class="pd-related-sub">Outros modelos de coleções diferentes</p>
+      <div class="pd-related-grid">${related.map(r => `
+        <div class="pd-rel-card" onclick="openProduct(allProducts[${allProducts.indexOf(r)}], ${pdFromCatalog})">
+          <div class="pd-rel-card-img" style="background:${r.color}15;">
+            ${r.img ? `<img src="${r.img}" alt="${r.name}" loading="lazy"/>` : `<span style="font-size:2.5rem">${r.emoji}</span>`}
+          </div>
+          <div class="pd-rel-card-body">
+            <div class="pd-rel-card-colecao">${r.colecao}</div>
+            <div class="pd-rel-card-name">${r.name}</div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+  } else {
+    relatedEl.innerHTML = '';
+  }
+}
+
+function buildRelated(product) {
+  // Get products from a different colecao, varied selection
+  const otherColecoes = [...new Set(allProducts.map(p => p.colecao))].filter(c => c !== product.colecao);
+  const related = [];
+  const usedColecoes = new Set();
+  // Try to get one product from each different colecao, up to 6
+  for (const col of otherColecoes) {
+    const candidates = allProducts.filter(p => p.colecao === col);
+    if (candidates.length > 0) {
+      related.push(candidates[Math.floor(Math.random() * candidates.length)]);
+      usedColecoes.add(col);
+      if (related.length >= 6) break;
+    }
+  }
+  return related;
+}
+
+// ══ CATALOG ══
+function catBuildColors() {
+  const cf = document.getElementById('catColorFilter');
+  if (cf.children.length) return;
+  const colorMap = buildColorMap();
+  Object.entries(colorMap).forEach(([name, hex]) => {
+    const d = document.createElement('div');
+    d.className = 'cdot'; d.style.background = hex; d.title = name; d.dataset.color = name;
+    d.onclick = () => { d.classList.toggle('active'); catApplyFilters(); };
+    cf.appendChild(d);
+  });
+}
+
+function catGetChecked(id) { return [...document.querySelectorAll('#' + id + ' input:checked')].map(i => i.value); }
+function catGetColors() { return [...document.querySelectorAll('.cdot.active')].map(d => d.dataset.color); }
+
+function catApplyFilters() {
+  const search = document.getElementById('catSearchInput').value.toLowerCase();
+  const cats = catGetChecked('catCatFilter');
+  const tags = catGetChecked('catTagFilter');
+  const badges = catGetChecked('catBadgeFilter');
+  const colors = catGetColors();
+  const sort = document.getElementById('catSort').value;
+
+  let res = allProducts.filter(p => {
+    if (search && !p.name.toLowerCase().includes(search) && !p.desc.toLowerCase().includes(search) && !p.colecao.toLowerCase().includes(search)) return false;
+    if (catActiveTab !== 'Todos') {
+      const tab = catActiveTab;
+      const nameUp = p.name.toUpperCase();
+      if (tab === 'Bolsa' && !nameUp.includes('BOLSA')) return false;
+      if (tab === 'Mochila' && !nameUp.includes('MOCHILA')) return false;
+      if (tab === 'Kit' && !nameUp.includes('KIT')) return false;
+      if (tab === 'Frasqueira' && !nameUp.includes('FRASQ')) return false;
+      if (tab === 'Estampada' && !['CHICAGO','MISSISSIPI','ELEGANCY','LINHO'].includes(p.colecao)) return false;
+    }
+    if (cats.length && !cats.some(c => p.colecao === c)) return false;
+    if (tags.length && !tags.every(t => p.tags.includes(t))) return false;
+    if (badges.length && !badges.includes(p.badge)) return false;
+    if (colors.length && !colors.some(c => {
+      const cName = getColorName(p.name);
+      return cName && cName.toLowerCase().includes(c.toLowerCase());
+    })) return false;
+    return true;
+  });
+
+  if (sort === 'az') res.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sort === 'za') res.sort((a, b) => b.name.localeCompare(a.name));
+  else if (sort === 'badge') res.sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
+
+  catFiltered = res;
+  catPage = 1;
+  catRenderPage();
+  catRenderPagination();
+  catRenderChips();
+  document.getElementById('catMeta').textContent = res.length + ' produto' + (res.length !== 1 ? 's' : '') + ' encontrado' + (res.length !== 1 ? 's' : '');
+}
+
+function catRenderPage() {
+  const grid = document.getElementById('catGrid');
+  grid.innerHTML = '';
+  const slice = catFiltered.slice((catPage - 1) * CAT_PAGE_SIZE, catPage * CAT_PAGE_SIZE);
+  if (!slice.length) {
+    grid.innerHTML = '<div class="cat-empty"><i class="fa-solid fa-box-open"></i><p>Nenhum produto encontrado.</p></div>';
+    return;
+  }
+  slice.forEach(p => {
+    const msg = encodeURIComponent('Olá Henrique! Tudo bem? Tenho interesse em saber mais sobre a *' + p.name + '* do catálogo Bolsas Boni. Poderia me passar informações, disponibilidade e condições para revenda? Obrigado(a)!');
+    const waLink = 'https://wa.me/' + CAT_WA + '?text=' + msg;
+    const tagsHTML = p.tags.map(t => `<span class="cat-tag">${t}</span>`).join('');
+    const badgeHTML = p.badge ? `<span class="cat-card-badge">${p.badge}</span>` : '';
+    const imgHTML = p.img
+      ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:8px;" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.cat-emoji-fallback').style.display='flex'"/><span class="cat-emoji-fallback" style="display:none;font-size:2.8rem;align-items:center;justify-content:center;width:100%;height:100%;position:absolute;top:0;left:0">${p.emoji}</span>`
+      : `<span style="font-size:2.8rem">${p.emoji}</span>`;
+
+    // Color variants dots
+    const variants = getVariants(p);
+    let colorDotsHTML = '';
+    if (variants.length > 0) {
+      const allVariants = [p, ...variants];
+      colorDotsHTML = `<div class="cat-card-colors">`;
+      allVariants.forEach(v => {
+        const cName = getColorName(v.name) || '';
+        const isActive = v === p;
+        colorDotsHTML += `<div class="cat-color-dot ${isActive ? 'active' : ''}" style="background:${v.color};" title="${cName}" onclick="event.stopPropagation();openProduct(allProducts[${allProducts.indexOf(v)}], true)"></div>`;
+      });
+      colorDotsHTML += `</div>`;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+    card.innerHTML = `
+      <div class="cat-card-img" style="background:#ffffff;position:relative;">${badgeHTML}${imgHTML}</div>
+      <div class="cat-card-body">
+        <div style="font-size:.65rem;color:#9BBC9F;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px">${p.colecao}</div>
+        <h3 class="cat-card-name">${p.name}</h3>
+        <p class="cat-card-desc">${p.desc}</p>
+        ${colorDotsHTML}
+        <div class="cat-card-tags">${tagsHTML}</div>
+        <div style="display:flex;gap:7px;margin-top:auto">
+          <a href="${waLink}" target="_blank" class="cat-wa-btn" onclick="event.stopPropagation()" style="flex:1"><i class="fa-brands fa-whatsapp"></i> Pedir info</a>
+        </div>
+      </div>`;
+    card.onclick = () => openProduct(p, true);
+    grid.appendChild(card);
+  });
+}
+
+function catRenderPagination() {
+  const total = Math.ceil(catFiltered.length / CAT_PAGE_SIZE);
+  const pg = document.getElementById('catPagination');
+  pg.innerHTML = '';
+  if (total <= 1) return;
+  const mk = (label, page, isActive, disabled) => {
+    const b = document.createElement('button');
+    b.className = 'cat-pg-btn' + (isActive ? ' active' : '');
+    b.innerHTML = label; b.disabled = disabled;
+    if (!disabled) b.onclick = () => { catPage = page; catRenderPage(); catRenderPagination(); document.getElementById('catalogPage').scrollTo({ top: 60, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    return b;
+  };
+  pg.appendChild(mk('<i class="fa-solid fa-chevron-left"></i>', catPage - 1, false, catPage === 1));
+  let pages = total <= 7 ? Array.from({ length: total }, (_, i) => i + 1) : [1];
+  if (total > 7) {
+    if (catPage > 3) pages.push('...');
+    for (let i = Math.max(2, catPage - 1); i <= Math.min(total - 1, catPage + 1); i++) pages.push(i);
+    if (catPage < total - 2) pages.push('...');
+    pages.push(total);
+  }
+  pages.forEach(p => {
+    if (p === '...') { const s = document.createElement('span'); s.className = 'cat-ellipsis'; s.textContent = '…'; pg.appendChild(s); }
+    else pg.appendChild(mk(p, p, p === catPage, false));
+  });
+  pg.appendChild(mk('<i class="fa-solid fa-chevron-right"></i>', catPage + 1, false, catPage === total));
+}
+
+function catRenderChips() {
+  const wrap = document.getElementById('catChips');
+  wrap.innerHTML = '';
+  const search = document.getElementById('catSearchInput').value;
+  if (search) catAddChip(wrap, 'Busca: "' + search + '"', () => { document.getElementById('catSearchInput').value = ''; catApplyFilters(); });
+  [...document.querySelectorAll('#catCatFilter input:checked,#catTagFilter input:checked,#catBadgeFilter input:checked')].forEach(i => {
+    catAddChip(wrap, i.value, () => { i.checked = false; catApplyFilters(); });
+  });
+  [...document.querySelectorAll('.cdot.active')].forEach(d => {
+    catAddChip(wrap, d.title, () => { d.classList.remove('active'); catApplyFilters(); });
+  });
+}
+
+function catAddChip(wrap, label, onRemove) {
+  const c = document.createElement('div'); c.className = 'cat-chip';
+  c.innerHTML = label + ' <button>✕</button>';
+  c.querySelector('button').onclick = onRemove;
+  wrap.appendChild(c);
+}
+
+function catClearFilters() {
+  document.querySelectorAll('#catCatFilter input,#catTagFilter input,#catBadgeFilter input').forEach(i => i.checked = false);
+  document.querySelectorAll('.cdot.active').forEach(d => d.classList.remove('active'));
+  document.getElementById('catSearchInput').value = '';
+  document.getElementById('catSort').value = 'default';
+  catActiveTab = 'Todos';
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === 'Todos'));
+  catApplyFilters();
+}
+
+function catSetTab(el) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active'); catActiveTab = el.dataset.cat; catApplyFilters();
+}
+
+function catToggleSection(el) {
+  el.classList.toggle('collapsed');
+  el.nextElementSibling.classList.toggle('hidden');
+}
+
+function catSetView(mode) {
+  document.getElementById('catGrid').classList.toggle('list-view', mode === 'list');
+  document.getElementById('catGridBtn').classList.toggle('active', mode === 'grid');
+  document.getElementById('catListBtn').classList.toggle('active', mode === 'list');
+}
+
+function catOpenSidebar() { document.getElementById('catSidebar').classList.add('open'); document.getElementById('catOverlay').classList.add('open'); }
+function catCloseSidebar() { document.getElementById('catSidebar').classList.remove('open'); document.getElementById('catOverlay').classList.remove('open'); }
+</script>
+
+<!-- POPUP AVISO LOJISTAS -->
+<div id="lojistaPopupOverlay" style="
+  display:flex;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(58,50,40,0.55);
+  backdrop-filter:blur(6px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:popupFadeIn .4s ease both;
+">
+  <div style="
+    background:var(--cream);
+    border-radius:22px;
+    box-shadow:0 24px 80px rgba(58,50,40,0.22);
+    max-width:460px;
+    width:100%;
+    padding:44px 40px 36px;
+    text-align:center;
+    position:relative;
+    animation:popupSlideUp .45s cubic-bezier(.34,1.56,.64,1) both;
+    animation-delay:.08s;
+    border:1px solid rgba(155,188,159,0.3);
+  ">
+    <!-- Ícone decorativo -->
+    <div style="
+      width:68px;height:68px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--peach),var(--sage));
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 22px;
+      box-shadow:0 8px 24px rgba(122,163,131,0.25);
+    ">
+      <i class="fa-solid fa-store" style="font-size:1.6rem;color:white;"></i>
+    </div>
+
+    <!-- Badge -->
+    <div style="
+      display:inline-flex;align-items:center;gap:6px;
+      background:rgba(155,188,159,0.18);
+      border:1px solid rgba(155,188,159,0.4);
+      border-radius:30px;padding:4px 14px;
+      font-size:.72rem;color:var(--sage-dark);font-weight:700;
+      letter-spacing:.5px;text-transform:uppercase;
+      margin-bottom:16px;
+    ">
+      <i class="fa-solid fa-circle-info" style="font-size:.7rem;"></i> Aviso Importante
+    </div>
+
+    <!-- Título -->
+    <h2 style="
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem;font-weight:700;
+      color:var(--text);margin-bottom:14px;line-height:1.25;
+    ">Vendas exclusivas<br>para <em style="color:var(--sage-dark);font-style:normal;">lojistas</em></h2>
+
+    <!-- Descrição -->
+    <p style="
+      color:var(--text-soft);font-size:.95rem;
+      line-height:1.75;margin-bottom:28px;
+    ">
+      Atendemos somente <strong style="color:var(--text);">pessoas jurídicas e revendedores</strong>. Não realizamos vendas no varejo ou para consumidor final.
+    </p>
+
+    <!-- Divisor -->
+    <div style="height:1px;background:rgba(155,188,159,0.25);margin-bottom:24px;"></div>
+
+    <!-- Botão -->
+    <button onclick="document.getElementById('lojistaPopupOverlay').style.display='none'" style="
+      background:var(--sage);
+      color:white;
+      border:none;
+      border-radius:30px;
+      padding:13px 36px;
+      font-size:.95rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .25s,transform .2s,box-shadow .25s;
+      font-family:'Inter',sans-serif;
+      letter-spacing:.3px;
+      display:inline-flex;align-items:center;gap:8px;
+      box-shadow:0 6px 18px rgba(122,163,131,0.3);
+    "
+    onmouseover="this.style.background='var(--sage-dark)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 26px rgba(122,163,131,0.38)'"
+    onmouseout="this.style.background='var(--sage)';this.style.transform='none';this.style.boxShadow='0 6px 18px rgba(122,163,131,0.3)'">
+      <i class="fa-solid fa-check"></i> Entendido
+    </button>
+  </div>
+</div>
+
+<style>
+@keyframes popupFadeIn { from{opacity:0} to{opacity:1} }
+@keyframes popupSlideUp { from{opacity:0;transform:translateY(32px) scale(.97)} to{opacity:1;transform:none} }
+</style>
+
+<!-- ZOOM LENS -->
+<div id="zoomLens"><img id="zoomLensImg" src="" alt=""/></div>
+
+<script>
+(function() {
+  const LENS_SIZE = 260;
+  const ZOOM = 1.8;
+  const lens = document.getElementById('zoomLens');
+  const lensImg = document.getElementById('zoomLensImg');
+  let activeImg = null;
+  let hideTimer = null;
+
+  function getImgFromTarget(el) {
+    // Only activate on the main product detail image
+    const container = el.closest('.pd-img-wrap');
+    if (!container) return null;
+    const img = container.querySelector('img');
+    if (!img || !img.src || img.style.display === 'none') return null;
+    return { img, container };
+  }
+
+  function showLens(e) {
+    const found = getImgFromTarget(e.target);
+    if (!found) { hideLens(); return; }
+    const { img, container } = found;
+
+    if (activeImg !== img) {
+      activeImg = img;
+      lensImg.src = img.src;
+      lensImg.style.width = '';
+      lensImg.style.height = '';
+    }
+
+    clearTimeout(hideTimer);
+    lens.style.display = 'block';
+    moveLens(e);
+  }
+
+  function moveLens(e) {
+    const found = getImgFromTarget(e.target);
+    if (!found) { hideLens(); return; }
+    const { img, container } = found;
+
+    const rect = img.getBoundingClientRect();
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+
+    // Position of mouse relative to image
+    const relX = mouseX - rect.left;
+    const relY = mouseY - rect.top;
+
+    // Percent within image
+    const px = relX / rect.width;
+    const py = relY / rect.height;
+
+    // Natural image dimensions (fallback to displayed size)
+    const natW = img.naturalWidth || rect.width;
+    const natH = img.naturalHeight || rect.height;
+
+    // Scaled image dimensions inside lens
+    const scaledW = natW * ZOOM;
+    const scaledH = natH * ZOOM;
+
+    // Offset to center the zoom on the cursor point
+    const offsetX = -(px * scaledW - LENS_SIZE / 2);
+    const offsetY = -(py * scaledH - LENS_SIZE / 2);
+
+    lensImg.style.width  = scaledW + 'px';
+    lensImg.style.height = scaledH + 'px';
+    lensImg.style.left   = offsetX + 'px';
+    lensImg.style.top    = offsetY + 'px';
+
+    // Move lens circle to mouse position
+    lens.style.left = mouseX + 'px';
+    lens.style.top  = mouseY + 'px';
+  }
+
+  function hideLens() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      lens.style.display = 'none';
+      activeImg = null;
+    }, 80);
+  }
+
+  document.addEventListener('mouseover',  showLens, true);
+  document.addEventListener('mousemove',  function(e) {
+    if (lens.style.display === 'none') return;
+    const found = getImgFromTarget(e.target);
+    if (found) moveLens(e); else hideLens();
+  }, true);
+  document.addEventListener('mouseout', function(e) {
+    const found = getImgFromTarget(e.target);
+    if (found) hideLens();
+  }, true);
+  document.addEventListener('click', hideLens, true);
+  document.addEventListener('scroll', hideLens, true);
+})();
+</script>
+</body>
+</html>
